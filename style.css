@@ -5,5 +5,5 @@ display: none;
 .car {
     width: 50px;
     height: 100px;
-    background: transparent url('./image/othercar.png') center / cover no-repeat;
+    background: transparent url('./othercar.png') center / cover no-repeat;
 }
