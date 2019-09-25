@@ -56,8 +56,6 @@ display: none;
     height: 100px;
     background: transparent url('./player.png') center / cover no-repeat;
     position: absolute;
-    left: 125px;
-    bottom: 10px;
 }
 
 .gameArea {
@@ -75,4 +73,36 @@ display: none;
     height: 50px;
     background: #fff;
     left: 145px;
+}
+
+.start {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 2rem 0;
+    text-align: center;
+    z-index: 200;
+    color: #fff;
+    font-size: 1.5rem;
+    background: black;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-weight: 700; 
+}
+
+.score {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: black;
+    padding: 1rem 0;
+    z-index: 200;
+    font-size: 1.5rem;
+    color: skyblue;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 500;
 }
