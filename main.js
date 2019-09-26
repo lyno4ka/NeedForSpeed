@@ -90,6 +90,8 @@ if (setting.start) {
     car.style.left = setting.x + 'px';
     car.style.top = setting.y + 'px';
     requestAnimationFrame(playGame);
+} else { 
+    music.remove();
 }
 }
 
