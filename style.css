@@ -58,7 +58,13 @@ display: none;
     position: absolute;
 }
 
+.game {
+    display: flex;
+    height: 100%;
+}
+
 .gameArea {
+    display: flex;
     width: 300px;
     height: 800px;
     position: relative;

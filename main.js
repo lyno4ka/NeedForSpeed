@@ -61,6 +61,7 @@ setting.x = car.offsetLeft;
 setting.y = car.offsetTop;
 music.setAttribute('autoplay', true);
 music.setAttribute('src', './audio.mp3');
+gameArea.appendChild(music);
 requestAnimationFrame(playGame);
 } 
 
