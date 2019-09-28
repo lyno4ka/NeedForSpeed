@@ -6,6 +6,8 @@ music = document.createElement('audio');
 
 car.classList.add('car');
 
+let topScore = localStorage.getItem('topScore');
+
 start.addEventListener('click', startGame);
 document.addEventListener('keydown', startRun);
 document.addEventListener('keyup', stopRun);
@@ -21,14 +23,35 @@ const setting = {
 start: false,
 score: 0,
 speed: 3,
-traffic: 3
+traffic: 3,
+level: 0
 };
 
 function getQuantityElements(heightElement){
     return (gameArea.offsetHeight / heightElement) + 1;
 }
 
-function startGame(){
+function startGame(event){
+
+if (event.target.classList.contains('start')) {
+    return;
+}
+
+if (event.target.classList.contains('easy')) {
+    setting.speed = 3;
+    setting.traffic = 3;
+}
+
+if (event.target.classList.contains('medium')) {
+    setting.speed = 5;
+    setting.traffic = 3;
+}
+
+if (event.target.classList.contains('hard')) {
+    setting.speed = 7;
+    setting.traffic = 2;
+}
+
 start.classList.add('hide');
 gameArea.innerHTML = '';
 
@@ -67,11 +90,22 @@ requestAnimationFrame(playGame);
 
 function playGame(){
 
-if (setting.start) {
+    if (setting.score > 2000 && setting.level === 0) {
+      ++setting.speed;
+      ++setting.level;
+    } else if (setting.score > 5000 && setting.level === 1) {
+      ++setting.speed;
+      ++setting.level;
+    } else if (setting.score > 10000 && setting.level === 2) {
+      ++setting.speed;
+      ++setting.level;
+    }
+
     setting.score += setting.speed;
     score.innerHTML = 'SCORE<br>' + setting.score;
     moveRoad();
     moveEnemy();
+
     if (keys.ArrowLeft && setting.x > 0) {
         setting.x -= setting.speed;
     }
@@ -90,6 +124,8 @@ if (setting.start) {
 
     car.style.left = setting.x + 'px';
     car.style.top = setting.y + 'px';
+
+    if (setting.start) {
     requestAnimationFrame(playGame);
 } else { 
     music.remove();
@@ -102,7 +138,6 @@ function startRun(event){
     keys[event.key] = true;
 }
 }
-
 
 function stopRun(event){
 event.preventDefault();
@@ -135,6 +170,11 @@ function moveEnemy() {
         carRect.left <= enemyRect.right &&
         carRect.bottom >= enemyRect.top) {
             setting.start = false;
+
+            if (topScore < setting.score) {
+            localStorage.setItem('topScore', setting.score);
+            }
+
             start.classList.remove('hide');
             start.style.top = score.offsetHeight;
     }
